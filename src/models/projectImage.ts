@@ -4,6 +4,7 @@ import sequelize from '../config/database';
 class ProjectImage extends Model {
   public id!: number;
   public filename!: string;
+  public url!: string; 
   public createdAt!: Date;
   public userId!: number;
 
@@ -22,6 +23,10 @@ class ProjectImage extends Model {
         primaryKey: true,
       },
       filename: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      url: {
         type: DataTypes.STRING,
         allowNull: false,
       },

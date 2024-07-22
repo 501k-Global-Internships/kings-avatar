@@ -30,6 +30,11 @@ app.use('/uploads/projects', addCORSHeaders, express.static(path.join('/var/data
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.json({ limit: '50mb' }));
 
+// Add a homepage route
+app.get('/', (req, res) => {
+  res.send('Welcome To Kings Avatar App');
+});
+
 routes(app);
 
 async function startServer() {
@@ -49,7 +54,7 @@ async function startServer() {
     await sequelize.authenticate();
     console.log('Connected to database');
 
-    await sequelize.sync();
+    await sequelize.sync({ alter: true });
     console.log('Database & tables synchronized.');
 
     app.listen(port, () => {
