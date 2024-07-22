@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import cors from 'cors'
+import cors from 'cors';
 import GalleryImage from './models/galleryImage';
 import ProjectImage from './models/projectImage';
 import User from './models/user';
@@ -8,19 +8,24 @@ import sequelize from './config/database';
 import routes from './routes/routes';
 
 const app = express();
-const port = 5000;
-
-app.use('/uploads/gallery', express.static(path.join(__dirname, 'uploads/gallery')));
-app.use('/uploads/projects', express.static(path.join(__dirname, 'uploads/projects')));
+const port = process.env.PORT || 5000;
 
 const corsOptions = {
-  origin: [
-    'http://localhost:3000',
-  ],
+  origin: 'http://localhost:3000',
   credentials: true,
 };
 
 app.use(cors(corsOptions));
+
+const addCORSHeaders = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  next();
+};
+
+app.use('/uploads/gallery', addCORSHeaders, express.static(path.join('/var/data/uploads/gallery')));
+app.use('/uploads/projects', addCORSHeaders, express.static(path.join('/var/data/uploads/projects')));
 
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.json({ limit: '50mb' }));
@@ -32,7 +37,7 @@ async function startServer() {
     const models = {
       User,
       GalleryImage,
-      ProjectImage
+      ProjectImage,
     };
 
     Object.values(models).forEach((model) => {
