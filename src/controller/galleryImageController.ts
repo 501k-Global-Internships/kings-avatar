@@ -24,7 +24,7 @@ class GalleryImageController {
 
   async getGalleryImage(req: Request, res: Response) {
     try {
-      const images = await GalleryImage.findAll({ where: { userId: (req as any).user.id } });
+      const images = await GalleryImage.findAll({ where: { userId: (req as any).user.id }, order: [['url', 'DESC']] });
 
       const fileUrls = images.map(img => img.url);
 

@@ -63,7 +63,7 @@ class UserController {
           .then(() => console.log('Sign-in email sent successfully'))
           .catch((error) => console.error('Error sending sign-in email:', error));
       } else {
-        res.status(400).send({ message: 'Incorrect password' });
+        res.status(400).send({ message: 'Incorrect email or password' });
       }
     }).catch((error) => {
       res.status(401).send(getErrorMessage(error));
