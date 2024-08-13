@@ -18,7 +18,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 const addCORSHeaders = (req: express.Request, res: express.Response, next: express.NextFunction) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://kings-avatar.netlify.app',);
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Origin', 'https://kings-avatar.netlify.app');
   res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
