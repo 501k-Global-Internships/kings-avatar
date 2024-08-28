@@ -208,8 +208,8 @@ export function forgotPasswordEmail(user: User) {
           button: {
             color: '#1da1f2', // Optional action button color
             text: 'Reset password',
-            // link: `https://product-square-invoice.netlify.app/resetPassword?recoveryPasswordId=${user.recoveryPasswordId}`,
-            link: `http://localhost:3000/resetPassword?recoveryPasswordId=${user.recoveryPasswordId}`,
+            link: `https://product-square-invoice.netlify.app/reset-password?recoveryPasswordId=${user.recoveryPasswordId}`,
+            // link: `http://localhost:3000/reset-password?recoveryPasswordId=${user.recoveryPasswordId}`,
           },
         },
         outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.',
