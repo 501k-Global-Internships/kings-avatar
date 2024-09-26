@@ -3,6 +3,7 @@ import path from 'path';
 import cors from 'cors';
 import GalleryImage from './models/galleryImage';
 import ProjectImage from './models/projectImage';
+import ShareData from './models/ShareData';
 import User from './models/user';
 import sequelize from './config/database';
 import routes from './routes/routes';
@@ -45,6 +46,7 @@ async function startServer() {
       User,
       GalleryImage,
       ProjectImage,
+      ShareData,
     };
 
     Object.values(models).forEach((model) => {
